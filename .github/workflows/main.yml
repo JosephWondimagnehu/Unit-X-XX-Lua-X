@@ -1,0 +1,26 @@
+name: Luacheck
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Lua and LuaRocks
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y libreadline-dev
+          pip install hererocks
+          hererocks lua_install --lua 5.4 --luarocks latest
+          echo "$PWD/lua_install/bin" >> $GITHUB_PATH
+
+      - name: Install Luacheck
+        run: |
+          luarocks install luacheck
+
+      - name: Run Luacheck
+        run: |
+          luacheck . --exclude-files lua_install
