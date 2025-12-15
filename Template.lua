@@ -1,7 +1,7 @@
 --[[
 -- Explain what your program does.
 --
--- Name: Name
+-- Name: Joseph Wondimagnehu
 -- Version: 1.0
 -- Date Created: Year-Month-Day
 --]]
